@@ -2,7 +2,6 @@ import React from 'react';
 import './Products.css'
 
 const Products = (props) => {
-    console.log(props.product);
     const {name, img, price, ratings, seller} = props.product;
     return (
         <div className='product'>
