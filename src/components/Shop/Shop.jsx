@@ -4,6 +4,7 @@ import "./Shop.css";
 
 const Shop = () => {
   const [products, setProducts] = useState([]);
+  const [cart, setCart] = useState([]);
 
   useEffect(() => {
     fetch("products.json")
@@ -12,7 +13,10 @@ const Shop = () => {
   }, []);
 
   const handleAddToCart = (product) => {
-    console.log(product)
+    // console.log(product);
+    // cart.push(product); // it's older and easy way
+    const newCart = [...cart, product]; //newer way and easy to copy all product of array
+    setCart(newCart);
   };
 
   return (
@@ -27,6 +31,7 @@ const Shop = () => {
 
       <div className="cart-container">
         <h3>Order Summary</h3>
+        <p>seected items: {cart.length}</p>
       </div>
     </div>
   );
