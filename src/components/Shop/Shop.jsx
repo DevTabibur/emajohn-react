@@ -1,33 +1,35 @@
-import React, { useEffect, useState } from 'react';
-import Products from '../Products/Products';
-import './Shop.css'
+import React, { useEffect, useState } from "react";
+import Products from "../Products/Products";
+import "./Shop.css";
 
 const Shop = () => {
-    const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState([]);
 
-    useEffect( ()=> {
-        fetch('products.json')
-        .then(res => res.json())
-        .then(data => setProducts(data))
-    }, [])
+  useEffect(() => {
+    fetch("products.json")
+      .then((res) => res.json())
+      .then((data) => setProducts(data));
+  }, []);
 
-    return (
-        <div className='shop-container'>
-            <div className="products-container">
-                {
-                    products.map(product=><Products 
-                    key={product.id}
-                    product={product}
-                    ></Products>)
-                }
-            </div>
+  const handleAddToCart = (product) => {
+    console.log(product)
+  };
 
-            <div className="cart-container">
-                <h3>Order Summary</h3>
-            </div>
+  return (
+    <div className="shop-container">
+      <div className="products-container">
+        {products.map((product) => (
+          <Products key={product.id} product={product}
+          handleAddToCart={handleAddToCart}
+          ></Products>
+        ))}
+      </div>
 
-        </div>
-    );
+      <div className="cart-container">
+        <h3>Order Summary</h3>
+      </div>
+    </div>
+  );
 };
 
 export default Shop;
